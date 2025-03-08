@@ -7,8 +7,13 @@ from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 
 def generate_launch_description():
+    rviz_config_file = os.path.join(
+        get_package_share_directory('urdfs'),
+        'rviz',
+        'urdf.rviz'
+    )
     package_name = 'urdfs'
-    urdf_file = os.path.join(get_package_share_directory(package_name), 'urdf', 'inverted_pendulum.urdf')
+    urdf_file = os.path.join(get_package_share_directory(package_name), 'urdf', 'wippy.urdf')
     print(urdf_file)
     urdf = open(urdf_file).read()
     print(urdf)
@@ -19,12 +24,15 @@ def generate_launch_description():
             default_value='false',
             description='Flag to enable joint_state_publisher_gui'
         ),
+        # Launch rviz2
         Node(
             package='rviz2',
             executable='rviz2',
             name='rviz2',
             output='screen',
+            arguments=['-d', rviz_config_file],
         ),
+        # Launch robot_state_publisher for the URDF so that the robot model can be visualized in rviz2
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
@@ -32,6 +40,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{'robot_description': urdf}],
         ),
+        # Launch joint_state_publisher to publish joint states for the robot model
         Node(
             package='joint_state_publisher',
             executable='joint_state_publisher',
@@ -40,6 +49,7 @@ def generate_launch_description():
             parameters=[{'robot_description': urdf}],
             condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
         ),
+        # Launch joint_state_publisher_gui to publish joint states for the robot
         Node(
             package='joint_state_publisher_gui',
             executable='joint_state_publisher_gui',

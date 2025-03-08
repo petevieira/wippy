@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="inverted_pendulum">
+<robot name="wippy">
 
     <material name="red">
         <color rgba="1 0 0 1"/>
@@ -18,7 +18,7 @@
         <visual>
             <origin rpy="0.0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://inverted_pendulum/meshes/chassis.stl" scale="1 1 1"/>
+                <mesh filename="package://urdfs/meshes/chassis.stl" scale="1 1 1"/>
             </geometry>
             <material name="red"/>
         </visual>
@@ -28,7 +28,7 @@
         <visual>
             <origin rpy="0.0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://inverted_pendulum/meshes/axle.stl" scale="1 1 1"/>
+                <mesh filename="package://urdfs/meshes/axle.stl" scale="1 1 1"/>
             </geometry>
             <material name="gray"/>
         </visual>
@@ -44,7 +44,7 @@
         <visual>
             <origin rpy="0.0 1.5708 0" xyz="0 0.085 0"/>
             <geometry>
-                <mesh filename="package://inverted_pendulum/meshes/wheel.stl" scale="1 1 1"/>
+                <mesh filename="package://urdfs/meshes/wheel.stl" scale="1 1 1"/>
             </geometry>
             <material name="green"/>
         </visual>
@@ -61,7 +61,7 @@
         <visual>
             <origin rpy="0.0 1.5708 0" xyz="0 -0.085 0"/>
             <geometry>
-                <mesh filename="package://inverted_pendulum/meshes/wheel.stl" scale="1 1 1"/>
+                <mesh filename="package://urdfs/meshes/wheel.stl" scale="1 1 1"/>
             </geometry>
             <material name="green"/>
         </visual>
@@ -78,7 +78,7 @@
         <visual>
             <origin rpy="0.0 0 0" xyz="0 0 0.011"/>
             <geometry>
-                <mesh filename="package://inverted_pendulum/meshes/weight.stl" scale="1 1 1"/>
+                <mesh filename="package://urdfs/meshes/weight.stl" scale="1 1 1"/>
             </geometry>
             <material name="blue"/>
         </visual>
