@@ -32,13 +32,27 @@ include_directories(
   ${TINYXML2_INCLUDE_DIRS}
 )
 
-add_executable(mobility_node src/mobility_node.cpp)
+add_executable(mobility_node
+  src/mobility_node.cpp
+  src/mobility_main.cpp
+)
+
+# print current source directory
+message(STATUS "Current source directory: ${CMAKE_CURRENT_SOURCE_DIR}")
+
+target_include_directories(mobility_node PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
 target_link_libraries(mobility_node
   ${TINYXML2_LIB}
 )
 
 ament_target_dependencies(mobility_node rclcpp std_msgs geometry_msgs sensor_msgs)
+
+install(DIRECTORY include/
+  DESTINATION include
+)
 
 install(TARGETS
   mobility_node
